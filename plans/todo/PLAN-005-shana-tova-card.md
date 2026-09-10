@@ -1,6 +1,6 @@
 # Shana Tova 5787 Card — Implementation Plan
 
-**Overall Progress:** `88%`
+**Overall Progress:** `95%`
 
 ## TLDR
 Clone Dan's birthday-card app into a new sibling repo `shana-tova-card` and re-skin it as a generic, humorous Rosh Hashanah 5787 card. Same five-screen flow, same timings, same sounds. Only text, questions, colors, fonts (add Hebrew), media, and the confetti (→ pomegranate seeds) change. Dad's repo stays untouched and live.
@@ -125,12 +125,12 @@ Deliverables into `public/`: `landing-bg.png` (Image A), `reveal.png` (Image B),
   - [x] 🟩 Compress PNGs to ≤1.5 MB each (`sips -Z 1440` + `pngquant` or `sips -s format jpeg` if needed; update extension in `Landing.jsx`/`Final.jsx` if converted) — *Gemini delivered JPEG; re-encoded q80 as `landing-bg.jpg` / `reveal.jpg`, extensions updated in Landing.jsx, Final.jsx, README, CLAUDE.md*
   - [x] 🟩 `npm run dev`, walk full flow on desktop + iPhone (video sound on tap, Hebrew renders in Rubik Pixels/Suez One, quote changes on Replay, arils fall) — *desktop: scripted CDP walk of the production build at 393×852, all 12 screens screenshotted, videos play, zero console errors; Hebrew `.he` sizes bumped (Rubik Pixels needs ~2× Press Start size). iPhone check = Step 8 phone confirmation on the live URL*
 
-- [ ] 🟥 **Step 8: Publish**
-  - [ ] 🟥 Commit all in new repo
-  - [ ] 🟥 `gh repo create ronzaum/shana-tova-card --public --source . --push`
-  - [ ] 🟥 `npm run deploy` (builds + pushes `gh-pages` branch)
-  - [ ] 🟥 Enable Pages: `gh api -X POST repos/ronzaum/shana-tova-card/pages -f "source[branch]=gh-pages" -f "source[path]=/"`
-  - [ ] 🟥 Open `https://ronzaum.github.io/shana-tova-card/` on phone, confirm full flow
+- [ ] 🟨 **Step 8: Publish**
+  - [x] 🟩 Commit all in new repo — *e02a318 on `main`*
+  - [x] 🟩 `gh repo create ronzaum/shana-tova-card --public --source . --push`
+  - [x] 🟩 `npm run deploy` (builds + pushes `gh-pages` branch)
+  - [x] 🟩 Enable Pages: `gh api -X POST repos/ronzaum/shana-tova-card/pages -f "source[branch]=gh-pages" -f "source[path]=/"` — *enabled, https enforced*
+  - [ ] 🟨 Open `https://ronzaum.github.io/shana-tova-card/` on phone, confirm full flow — *awaiting Ron on a real iPhone (sound on tap, Hebrew fonts, quote rotation, arils)*
   - [ ] 🟥 Move this plan to `plans/done/` in new repo; delete copy from Dad's repo (Dad's repo left otherwise untouched, nothing committed there)
 
 ## Execution
