@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- Pomegranate: red body, dark crown, gold highlight -->
+  <path fill="#7A0E20" d="M19 4h10l-1 5h-8z"/>
+  <path fill="#7A0E20" d="M17 8l3-4 4 3 4-3 3 4-2 4H19z"/>
+  <circle cx="24" cy="27" r="17" fill="#C41E3A"/>
+  <circle cx="24" cy="27" r="17" fill="none" stroke="#7A0E20" stroke-width="2"/>
+  <ellipse cx="17" cy="20" rx="5" ry="3.5" fill="#F5B301" opacity="0.7" transform="rotate(-35 17 20)"/>
+</svg>
