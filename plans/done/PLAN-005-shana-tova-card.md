@@ -1,6 +1,6 @@
 # Shana Tova 5787 Card — Implementation Plan
 
-**Overall Progress:** `95%`
+**Overall Progress:** `100%`
 
 ## TLDR
 Clone Dan's birthday-card app into a new sibling repo `shana-tova-card` and re-skin it as a generic, humorous Rosh Hashanah 5787 card. Same five-screen flow, same timings, same sounds. Only text, questions, colors, fonts (add Hebrew), media, and the confetti (→ pomegranate seeds) change. Dad's repo stays untouched and live.
@@ -130,8 +130,20 @@ Deliverables into `public/`: `landing-bg.png` (Image A), `reveal.png` (Image B),
   - [x] 🟩 `gh repo create ronzaum/shana-tova-card --public --source . --push`
   - [x] 🟩 `npm run deploy` (builds + pushes `gh-pages` branch)
   - [x] 🟩 Enable Pages: `gh api -X POST repos/ronzaum/shana-tova-card/pages -f "source[branch]=gh-pages" -f "source[path]=/"` — *enabled, https enforced*
-  - [ ] 🟨 Open `https://ronzaum.github.io/shana-tova-card/` on phone, confirm full flow — *awaiting Ron on a real iPhone (sound on tap, Hebrew fonts, quote rotation, arils)*
-  - [ ] 🟥 Move this plan to `plans/done/` in new repo; delete copy from Dad's repo (Dad's repo left otherwise untouched, nothing committed there)
+  - [x] 🟩 Open `https://ronzaum.github.io/shana-tova-card/` on phone, confirm full flow — *Ron reviewed on iPhone 10 Sep 2026; feedback applied in Round 2 below*
+  - [x] 🟩 Move this plan to `plans/done/` in new repo; delete copy from Dad's repo
 
 ## Execution
 Single `/execute` run covers Steps 1–8. Steps 1–6 need nothing from Ron. Step 7 waits on Ron's 4 media files; if they are not yet in `public/` when reached, do everything else, then stop and report which files are missing. Step 8 runs only after Step 7 passes.
+
+## Round 2 — Ron's phone feedback (10 Sep 2026), all applied
+- Landing: title forced to one line (`clamp` + `nowrap`); added gold Hebrew greeting שנה טובה ומתוקה, Hebrew chips (א׳ תשרי / תשפ״ז), festive symbol line, stats → SHOFAR READY / YEAR 5787 / HONEY 100%
+- Scan video: was a square centre-crop with blurred pads (read as landscape). Re-rendered as a true 9:16 pan-crop of the Veo source — 405×720 window eases from the rabbi's face to the shofar bell/honey jar over 8 s, upscaled to 720×1280
+- Questions: dropped #2 (Tekiah Espresso) and #6 (100 blasts) → 5 questions
+- Result screen ("Analysis Complete") removed entirely; last answer starts the final video and goes straight to Final
+- Final phase 3 (Shana Tova) held 4.2 s (was 2 s) on a dark gold-bordered card; overlay darkens while it's up
+- Hebrew display font: Rubik Pixels (dotted) → Rubik 900 — the dotted face was the "hard to read" complaint
+- `reveal.jpg` cropped to the two characters (console frame, header, life bar removed)
+- Cream quote banner removed; replaced by the year's message (5787 · תשפ״ז · תהא שנת פריחה וזריחה) with per-word pop animation and delayed English line, on the gradient — the 10 rotating quotes were dropped
+- שנה טובה ומתוקה headline pops in with overshoot and breathes gold, flanked by Stars of David
+- Quiet blue Stars of David (✡) on landing, retro background and final card

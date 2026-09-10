@@ -25,11 +25,6 @@ const questions = [
     ["A cow", "A goat", "A unicorn"]
   ),
   buildQuestion(
-    "Which of these is NOT a real shofar blast?",
-    "Tekiah Espresso",
-    ["Tekiah", "Shevarim", "Teruah"]
-  ),
-  buildQuestion(
     "Legend says a pomegranate has exactly how many seeds?",
     "613, one per mitzvah",
     ["100", "5787", "Nobody has ever finished counting"]
@@ -43,11 +38,6 @@ const questions = [
     "Why is there a fish head on the table?",
     "\"Be a head, not a tail\"",
     ["Fish are naturally sweet", "The cat insisted", "It's cheaper than brisket"]
-  ),
-  buildQuestion(
-    "How many shofar blasts are traditionally sounded on Rosh Hashanah?",
-    "100",
-    ["7", "18", "613"]
   ),
   buildQuestion(
     "Whose story is read from the Torah on the second day?",
@@ -74,26 +64,6 @@ export const wrongFeedback = [
   "Interesting choice…",
   "Tashlich that one.",
   "The fish head disagrees.",
-];
-
-/* Rotating new-year wishes — Final screen picks one at random per mount */
-export const quotes = [
-  { he: "שנה טובה ומתוקה", en: "A good and sweet year." },
-  { he: "כתיבה וחתימה טובה", en: "May you be written and sealed for good." },
-  {
-    he: "תכלה שנה וקללותיה, תחל שנה וברכותיה",
-    en: "Let the old year and its curses end; let the new year and its blessings begin.",
-  },
-  {
-    he: "עושה שלום במרומיו, הוא יעשה שלום עלינו ועל כל העולם",
-    en: "May the One who makes peace above bring peace to us and to all the world.",
-  },
-  { he: "שנת שלום לכולם", en: "A year of peace for all." },
-  { he: "היום הרת עולם", en: "Today the world is born." },
-  { he: "שתהיה שנה של התחלות חדשות", en: "May it be a year of new beginnings." },
-  { he: "תפוח בדבש ולב מלא", en: "An apple in honey, and a full heart." },
-  { he: "שנת בריאות, נחת ושמחה", en: "A year of health, nachat and joy." },
-  { he: "שתהיה שנה של אור", en: "May it be a year of light." },
 ];
 
 export default questions;

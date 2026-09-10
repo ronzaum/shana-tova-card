@@ -1,22 +1,21 @@
 # Shana Tova 5787 🍎🍯
 
-An interactive, retro-arcade "new year system update" — a humorous Rosh Hashanah 5787 card. Same five-screen flow as Dan's birthday card, re-skinned with Hebrew fonts, a honey/pomegranate palette, and a pomegranate-seed rain instead of confetti.
+An interactive, retro-arcade "new year system update" — a humorous Rosh Hashanah 5787 card. Same flow as Dan's birthday card, re-skinned with Hebrew fonts, a honey/pomegranate palette, and a pomegranate-seed rain instead of confetti.
 
 Rosh Hashanah 5787 begins the evening of Fri 11 Sep 2026.
 
 ## How It Works
 
-1. **Landing** — "NEW YEAR SYSTEM UPDATE" splash with retro stats (Threat: HONEY, Year: 5787, Status: SWEET)
+1. **Landing** — "NEW YEAR SYSTEM UPDATE" splash with retro stats (Shofar: READY, Year: 5787, Honey: 100%) plus a Hebrew greeting and quiet Stars of David
 2. **Scan** — an 8 s "installing year 5787" phase with video + chiptune
-3. **Questions** — 7 humorous Rosh Hashanah trivia questions
-4. **Result** — sweetness confidence reveal
-5. **Final** — LVL 5787 UNLOCKED, שנה טובה ומתוקה, a random Hebrew/English quote, pomegranate arils falling, replay
+3. **Questions** — 5 humorous Rosh Hashanah trivia questions
+4. **Final** — LVL 5787 UNLOCKED, שנה טובה ומתוקה, the year's message (תהא שנת פריחה וזריחה), pomegranate arils falling, replay
 
 ## Tech Stack
 
 - React 19 + Vite
 - Custom `<canvas>` particle animation (`PomegranateRain.jsx`)
-- Fonts: Press Start 2P, VT323, Space Grotesk, Rubik Pixels (Hebrew display), Suez One (Hebrew body)
+- Fonts: Press Start 2P, VT323, Space Grotesk, Rubik 900 (Hebrew display), Suez One (Hebrew body)
 - CSS variables for the palette (`--gold`, `--orange`, `--orange-deep`, `--cream`, `--red`, `--red-deep`)
 
 ## Media (in `public/`)

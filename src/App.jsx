@@ -2,7 +2,6 @@ import { useState, useCallback, useRef } from "react";
 import Landing from "./components/Landing";
 import Scan from "./components/Scan";
 import Question from "./components/Question";
-import Result from "./components/Result";
 import Final from "./components/Final";
 import RetroBackground from "./components/RetroBackground";
 import questions from "./data/questions";
@@ -11,7 +10,6 @@ import "./styles.css";
 export default function App() {
   const [screen, setScreen] = useState("landing");
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [score, setScore] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
 
   /*
@@ -54,28 +52,24 @@ export default function App() {
     transition("questions");
   }, [transition]);
 
-  /* Answer handler — last question starts final video immediately */
-  const handleAnswer = useCallback(
-    (isCorrect) => {
-      if (isCorrect) setScore((s) => s + 1);
-      if (questionIndex < questions.length - 1) {
-        setTransitioning(true);
-        setTimeout(() => {
-          setQuestionIndex((i) => i + 1);
-          setTransitioning(false);
-        }, 400);
-      } else {
-        const vid = finalVideoRef.current;
-        if (vid) {
-          vid.currentTime = 0;
-          vid.play();
-        }
-        setFinalVideoVisible(true);
-        transition("result");
+  /* Answer handler — last question starts the final video and goes straight to Final */
+  const handleAnswer = useCallback(() => {
+    if (questionIndex < questions.length - 1) {
+      setTransitioning(true);
+      setTimeout(() => {
+        setQuestionIndex((i) => i + 1);
+        setTransitioning(false);
+      }, 400);
+    } else {
+      const vid = finalVideoRef.current;
+      if (vid) {
+        vid.currentTime = 0;
+        vid.play();
       }
-    },
-    [questionIndex, transition]
-  );
+      setFinalVideoVisible(true);
+      transition("final");
+    }
+  }, [questionIndex, transition]);
 
   /* Final phase 4 — hide video, show photo */
   const handleFinalPhaseChange = useCallback((phase) => {
@@ -92,7 +86,6 @@ export default function App() {
     setTimeout(() => {
       setScreen("landing");
       setQuestionIndex(0);
-      setScore(0);
       setTransitioning(false);
     }, 400);
   }, []);
@@ -126,13 +119,6 @@ export default function App() {
         )}
         {screen === "questions" && (
           <Question key={questionIndex} index={questionIndex} onAnswer={handleAnswer} />
-        )}
-        {screen === "result" && (
-          <Result
-            score={score}
-            total={questions.length}
-            onComplete={() => transition("final")}
-          />
         )}
         {screen === "final" && (
           <Final onReplay={handleReplay} onPhaseChange={handleFinalPhaseChange} />

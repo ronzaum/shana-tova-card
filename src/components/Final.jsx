@@ -1,25 +1,23 @@
 import { useState, useEffect } from "react";
 import { playPress, playVictory } from "../sounds";
-import { quotes } from "../data/questions";
 import PomegranateRain from "./PomegranateRain";
+
+/* 5787 = תשפ״ז — tradition reads the letters as a wish */
+const yearWish = ["תהא", "שנת", "פריחה", "וזריחה"];
 
 export default function Final({ onReplay, onPhaseChange }) {
   const [phase, setPhase] = useState(0);
 
   /*
-   * One random wish per mount — Replay remounts Final, so a new quote appears.
-   * Lazy useState initializer runs exactly once and is allowed to be impure.
+   * Phase timeline (ms) — the final video is 8 s and loops underneath.
+   * Phase 3 (Shana Tova) is held for 4.2 s so it can actually be read.
    */
-  const [quote] = useState(
-    () => quotes[Math.floor(Math.random() * quotes.length)]
-  );
-
   useEffect(() => {
     const timers = [
-      setTimeout(() => setPhase(1), 2400),
-      setTimeout(() => setPhase(2), 4200),
+      setTimeout(() => setPhase(1), 2200),
+      setTimeout(() => setPhase(2), 4000),
       setTimeout(() => setPhase(3), 6200),
-      setTimeout(() => setPhase(4), 8200),
+      setTimeout(() => setPhase(4), 10400),
     ];
     return () => timers.forEach(clearTimeout);
   }, []);
@@ -36,8 +34,10 @@ export default function Final({ onReplay, onPhaseChange }) {
 
   return (
     <div className="screen final">
-      {/* Video is rendered at App level — overlay sits on top */}
-      {phase < 4 && <div className="final-video-overlay" />}
+      {/* Video is rendered at App level — overlay sits on top, darker while text is up */}
+      {phase < 4 && (
+        <div className={`final-video-overlay ${phase === 3 ? "dim" : ""}`} />
+      )}
 
       {/* Phase 0 — Installing animation */}
       {phase === 0 && (
@@ -56,26 +56,28 @@ export default function Final({ onReplay, onPhaseChange }) {
         <h1 className="final-confirmed final-pop">UPDATE COMPLETE</h1>
       )}
 
-      {/* Phase 2 — 5787 — LVL 5787 UNLOCKED + what the year's letters spell */}
+      {/* Phase 2 — 5787 — LVL 5787 UNLOCKED */}
       {phase === 2 && (
         <div className="final-unlock fade-in">
           <h2 className="final-year">5787</h2>
           <p className="final-lvl">LVL 5787 UNLOCKED</p>
-          <p className="final-meaning">
-            5787 is written <span className="he-body">תשפ״ז</span>. Tradition
-            reads the letters as a wish —{" "}
-            <span className="he-body">תהא שנת פריחה וזריחה</span>, "may it be a
-            year of blossoming and sunrise." It ends in 7: the number of
-            completion.
-          </p>
+          <p className="final-year-he he-body">תשפ״ז</p>
         </div>
       )}
 
-      {/* Phase 3 — Shana Tova */}
+      {/* Phase 3 — Shana Tova, boxed for readability over the video */}
       {phase === 3 && (
-        <div className="final-love-msg fade-in">
-          <p className="final-love he">שנה טובה</p>
-          <p className="final-love">Shana Tova</p>
+        <div className="final-love-msg final-pop">
+          <div className="final-love-box">
+            <div className="final-love-stars" aria-hidden="true">
+              <span className="magen">✡</span>
+              <span className="magen">✡</span>
+              <span className="magen">✡</span>
+            </div>
+            <p className="final-love he final-glow">שנה טובה</p>
+            <p className="final-love">Shana Tova</p>
+            <p className="final-love-sub he-body">ומתוקה · 5787</p>
+          </div>
         </div>
       )}
 
@@ -93,14 +95,36 @@ export default function Final({ onReplay, onPhaseChange }) {
               <div className="final-orange-banner">LVL 5787 UNLOCKED</div>
             </div>
             <div className="final-overlay-bottom">
-              <p className="final-love-big he">שנה טובה ומתוקה</p>
+              <div className="final-title-wrap">
+                <span className="magen final-magen" aria-hidden="true">✡</span>
+                <p className="final-love-big he final-shine">שנה טובה ומתוקה</p>
+                <span className="magen final-magen" aria-hidden="true">✡</span>
+              </div>
               <p className="final-love-sm">
                 Shana Tova U'Metuka · Ktiva v'Chatima Tova
               </p>
-              <div className="final-quote-banner">
-                <span className="final-quote-he he-body">{quote.he}</span>
-                <span className="final-quote-en">{quote.en}</span>
+
+              {/* The year's own message — staggered word pop, then the translation */}
+              <div className="final-year-msg">
+                <p className="final-year-msg-label">
+                  5787 · <span className="he-body">תשפ״ז</span> · reads as
+                </p>
+                <p className="final-year-msg-he he-body">
+                  {yearWish.map((w, i) => (
+                    <span
+                      key={i}
+                      className="year-word"
+                      style={{ animationDelay: `${1.0 + i * 0.4}s` }}
+                    >
+                      {w}
+                    </span>
+                  ))}
+                </p>
+                <p className="final-year-msg-en">
+                  "May it be a year of blossoming and sunrise."
+                </p>
               </div>
+
               <p className="final-from">From Ron</p>
               {onReplay && (
                 <button

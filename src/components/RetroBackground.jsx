@@ -32,6 +32,12 @@ export default function RetroBackground() {
       <div className="pixel-star star-14" />
       <div className="pixel-star star-15" />
 
+      {/* Stars of David — quiet blue, low opacity */}
+      <span className="magen bg-magen bg-magen-1">✡</span>
+      <span className="magen bg-magen bg-magen-2">✡</span>
+      <span className="magen bg-magen bg-magen-3">✡</span>
+      <span className="magen bg-magen bg-magen-4">✡</span>
+
       {/* Pixel crosses */}
       <div className="pixel-cross cross-1" />
       <div className="pixel-cross cross-2" />
