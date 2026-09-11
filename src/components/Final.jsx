@@ -5,14 +5,16 @@ import PomegranateRain from "./PomegranateRain";
 /* 5787 = תשפ״ז — tradition reads the letters as a wish */
 const yearWish = ["תהא", "שנת", "פריחה", "וזריחה"];
 
-export default function Final({ onReplay, onPhaseChange }) {
-  const [phase, setPhase] = useState(0);
+export default function Final({ onReplay, onPhaseChange, initialPhase = 0, hold = false }) {
+  const [phase, setPhase] = useState(initialPhase);
 
   /*
    * Phase timeline (ms) — the final video is 8 s and loops underneath.
    * Phase 3 (Shana Tova) is held for 4.2 s so it can actually be read.
+   * When held by the dev bar the phase is frozen at initialPhase.
    */
   useEffect(() => {
+    if (hold) return undefined;
     const timers = [
       setTimeout(() => setPhase(1), 2200),
       setTimeout(() => setPhase(2), 4000),
@@ -20,7 +22,7 @@ export default function Final({ onReplay, onPhaseChange }) {
       setTimeout(() => setPhase(4), 10400),
     ];
     return () => timers.forEach(clearTimeout);
-  }, []);
+  }, [hold]);
 
   /* Notify parent of phase changes (to hide video at phase 4) */
   useEffect(() => {

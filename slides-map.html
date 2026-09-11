@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shana Tova 5787 — Slide Map</title>
+<style>
+  :root {
+    --gold: #F5B301;
+    --orange: #FF8C1A;
+    --cream: #FFF4D6;
+    --red: #C41E3A;
+    --bg: #0b0b0f;
+    --panel: #15151c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 24px 16px 48px;
+    background: var(--bg);
+    color: var(--cream);
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  h1 {
+    color: var(--gold);
+    font-size: 20px;
+    margin: 0 0 4px;
+  }
+  .sub { color: #999; margin: 0 0 24px; }
+  .sub code { color: var(--orange); }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 16px;
+  }
+  .slide {
+    background: var(--panel);
+    border: 1px solid #2a2a35;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .slide-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 10px 12px;
+    background: #1e1e28;
+    border-bottom: 1px solid #2a2a35;
+  }
+  .id {
+    background: var(--gold);
+    color: #000;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+  .name { font-weight: 700; }
+  .meta { color: #888; font-size: 12px; margin-left: auto; }
+  .frame {
+    margin: 12px;
+    aspect-ratio: 9 / 16;
+    border: 1px dashed #444;
+    border-radius: 6px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 12px;
+    background: #000;
+  }
+  .el {
+    border: 1px solid #333;
+    border-radius: 3px;
+    padding: 4px 6px;
+    color: #ccc;
+  }
+  .el b { color: var(--cream); }
+  .el.he { direction: rtl; text-align: right; font-family: system-ui, sans-serif; }
+  .el.btn { border-color: var(--orange); color: var(--orange); text-align: center; }
+  .el.video { border-color: #3a6; color: #6c9; text-align: center; }
+  .el.img { border-color: #69c; color: #9bd; text-align: center; }
+  .spacer { flex: 1; }
+  .file {
+    padding: 0 12px 12px;
+    color: #777;
+    font-size: 11px;
+  }
+  .file code { color: #aaa; }
+  .section-title {
+    grid-column: 1 / -1;
+    color: var(--orange);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 12px;
+    border-bottom: 1px solid #2a2a35;
+    padding-bottom: 4px;
+  }
+  .globals {
+    margin-top: 32px;
+    background: var(--panel);
+    border: 1px solid #2a2a35;
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+  .globals h2 { color: var(--gold); font-size: 14px; margin: 0 0 8px; }
+  .globals li { margin: 4px 0; }
+  .globals code { color: var(--orange); }
+  table.index {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 32px;
+    background: var(--panel);
+    border: 1px solid #2a2a35;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .index th, .index td {
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid #2a2a35;
+    vertical-align: top;
+  }
+  .index th { color: var(--gold); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; background: #1e1e28; }
+  .index tr:last-child td { border-bottom: 0; }
+  .index td:first-child { white-space: nowrap; }
+  .index td:last-child { color: #888; white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<h1>Shana Tova 5787 — Slide Map</h1>
+<p class="sub">Point at a slide by its ID (e.g. "edit F3"). In the game, open with <code>?dev</code> in the URL to get a jump bar with the same IDs.</p>
+
+<table class="index">
+  <tr><th>ID</th><th>Page</th><th>What's on it</th><th>Timing</th></tr>
+  <tr><td><span class="id">L</span></td><td>Landing</td><td>Background image, chips, "NEW YEAR SYSTEM UPDATE", Hebrew greeting, subtitle, body text, 3 stat boxes, START UPDATE button</td><td>until tap</td></tr>
+  <tr><td><span class="id">S</span></td><td>Scan</td><td>Transition video with pulse icon and 5 "scanning…" lines appearing one by one, chiptune music</td><td>8 s auto</td></tr>
+  <tr><td><span class="id">Q1</span></td><td>Question 1</td><td>Shofar — which animal's horn</td><td>until answered</td></tr>
+  <tr><td><span class="id">Q2</span></td><td>Question 2</td><td>Pomegranate — how many seeds</td><td>until answered</td></tr>
+  <tr><td><span class="id">Q3</span></td><td>Question 3</td><td>Tashlich — what is thrown into the water</td><td>until answered</td></tr>
+  <tr><td><span class="id">Q4</span></td><td>Question 4</td><td>Fish head — why on the table</td><td>until answered</td></tr>
+  <tr><td><span class="id">Q5</span></td><td>Question 5</td><td>Torah reading on day two (Akeidah). Answer goes straight to F0</td><td>until answered</td></tr>
+  <tr><td><span class="id">F0</span></td><td>Installing</td><td>Final video, "INSTALLING NEW YEAR..." with loader bar</td><td>0 – 2.2 s</td></tr>
+  <tr><td><span class="id">F1</span></td><td>Update complete</td><td>Final video, "UPDATE COMPLETE" pop-in</td><td>2.2 – 4.0 s</td></tr>
+  <tr><td><span class="id">F2</span></td><td>Level unlocked</td><td>Final video, big "5787", "LVL 5787 UNLOCKED", תשפ״ז</td><td>4.0 – 6.2 s</td></tr>
+  <tr><td><span class="id">F3</span></td><td>Shana Tova box</td><td>Final video dimmed, boxed שנה טובה / Shana Tova / ומתוקה · 5787 with 3 stars</td><td>6.2 – 10.4 s</td></tr>
+  <tr><td><span class="id">F4</span></td><td>Reveal</td><td>reveal.jpg full-screen, orange banner, big Hebrew greeting, year wish (תהא שנת פריחה וזריחה) + translation, "From Ron", Replay button, pomegranate rain, victory jingle</td><td>10.4 s → end</td></tr>
+</table>
+
+<div class="grid">
+
+  <div class="section-title">Intro</div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="id">L</span><span class="name">Landing</span><span class="meta">until START tapped</span></div>
+    <div class="frame">
+      <div class="el img">landing-bg.jpg + dark overlay</div>
+      <div class="el">✡ SYS ONLINE · א׳ תשרי · תשפ״ז <b>(chips)</b></div>
+      <div class="el"><b>NEW YEAR SYSTEM UPDATE</b> (title)</div>
+      <div class="el he">שנה טובה ומתוקה (Hebrew headline)</div>
+      <div class="spacer"></div>
+      <div class="el">Rosh Hashanah detected. (subtitle)</div>
+      <div class="el he">תפוח בדבש · רימון · שופר · חלה עגולה</div>
+      <div class="el">Year 5787 is ready to install… (body text)</div>
+      <div class="el">SHOFAR READY · YEAR 5787 · HONEY 100% <b>(stat boxes)</b></div>
+      <div class="el btn">START UPDATE</div>
+    </div>
+    <div class="file"><code>src/components/Landing.jsx</code></div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="id">S</span><span class="name">Scan</span><span class="meta">8 s auto</span></div>
+    <div class="frame">
+      <div class="el video">transition.mp4 (looping) + overlay</div>
+      <div class="spacer"></div>
+      <div class="el">pulse icon · 3 dots</div>
+      <div class="el">Scanning honey levels…</div>
+      <div class="el">Counting pomegranate seeds…</div>
+      <div class="el">Tuning shofar…</div>
+      <div class="el">Cross-referencing Book of Life…</div>
+      <div class="el">Installing year 5787…</div>
+      <div class="el" style="color:#777">(lines appear every 1.4 s, chiptune music)</div>
+      <div class="spacer"></div>
+    </div>
+    <div class="file"><code>src/components/Scan.jsx</code></div>
+  </div>
+
+  <div class="section-title">Quiz</div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="id">Q1</span><span class="name">Question 1</span><span class="meta">1 / 5</span></div>
+    <div class="frame">
+      <div class="el">1 / 5 (counter)</div>
+      <div class="el"><b>Which animal's horn is the classic shofar?</b></div>
+      <div class="el btn">A ram ✓</div>
+      <div class="el btn">A cow</div>
+      <div class="el btn">A goat</div>
+      <div class="el btn">A unicorn</div>
+      <div class="el" style="color:#777">feedback line after tap (0.8 s, then next)</div>
+    </div>
+    <div class="file"><code>src/data/questions.js</code> · layout <code>Question.jsx</code></div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="id">Q2</span><span class="name">Question 2</span><span class="meta">2 / 5</span></div>
+    <div class="frame">
+      <div class="el">2 / 5</div>
+      <div class="el"><b>Legend says a pomegranate has exactly how many seeds?</b></div>
+      <div class="el btn">613, one per mitzvah ✓</div>
+      <div class="el btn">100</div>
+      <div class="el btn">5787</div>
+      <div class="el btn">Nobody has ever finished counting</div>
+    </div>
+    <div class="file"><code>src/data/questions.js</code></div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="id">Q3</span><span class="name">Question 3</span><span class="meta">3 / 5</span></div>
+    <div class="frame">
+      <div class="el">3 / 5</div>
+      <div class="el"><b>What do we symbolically throw into the water at Tashlich?</b></div>
+      <div class="el btn">Our sins ✓</div>
+      <div class="el btn">Last year's honey cake</div>
+      <div class="el btn">Coins for luck</div>
+      <div class="el btn">The Wi-Fi password</div>
+    </div>
+    <div class="file"><code>src/data/questions.js</code></div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="id">Q4</span><span class="name">Question 4</span><span class="meta">4 / 5</span></div>
+    <div class="frame">
+      <div class="el">4 / 5</div>
+      <div class="el"><b>Why is there a fish head on the table?</b></div>
+      <div class="el btn">"Be a head, not a tail" ✓</div>
+      <div class="el btn">Fish are naturally sweet</div>
+      <div class="el btn">The cat insisted</div>
+      <div class="el btn">It's cheaper than brisket</div>
+    </div>
+    <div class="file"><code>src/data/questions.js</code></div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="id">Q5</span><span class="name">Question 5</span><span class="meta">5 / 5 → Final</span></div>
+    <div class="frame">
+      <div class="el">5 / 5</div>
+      <div class="el"><b>Whose story is read from the Torah on the second day?</b></div>
+      <div class="el btn">Isaac — the Akeidah ✓</div>
+      <div class="el btn">Jonah and the whale</div>
+      <div class="el btn">Noah and the ark</div>
+      <div class="el btn">David vs Goliath</div>
+      <div class="el" style="color:#777">answer → straight to F0</div>
+    </div>
+    <div class="file"><code>src/data/questions.js</code></div>
+  </div>
+
+  <div class="section-title">Final sequence (identity-video.mp4 loops under F0–F3)</div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="id">F0</span><span class="name">Installing</span><span class="meta">0 – 2.2 s</span></div>
+    <div class="frame">
+      <div class="el video">identity-video.mp4 + overlay</div>
+      <div class="spacer"></div>
+      <div class="el"><b>INSTALLING NEW YEAR...</b></div>
+      <div class="el">▓▓▓▓▓▓░░░░ (loader bar)</div>
+      <div class="spacer"></div>
+    </div>
+    <div class="file"><code>src/components/Final.jsx</code> · phase 0</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="id">F1</span><span class="name">Update complete</span><span class="meta">2.2 – 4.0 s</span></div>
+    <div class="frame">
+      <div class="el video">identity-video.mp4 + overlay</div>
+      <div class="spacer"></div>
+      <div class="el"><b>UPDATE COMPLETE</b> (pop-in)</div>
+      <div class="spacer"></div>
+    </div>
+    <div class="file"><code>src/components/Final.jsx</code> · phase 1</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="id">F2</span><span class="name">Level unlocked</span><span class="meta">4.0 – 6.2 s</span></div>
+    <div class="frame">
+      <div class="el video">identity-video.mp4 + overlay</div>
+      <div class="spacer"></div>
+      <div class="el"><b>5787</b> (big year)</div>
+      <div class="el">LVL 5787 UNLOCKED</div>
+      <div class="el he">תשפ״ז</div>
+      <div class="spacer"></div>
+    </div>
+    <div class="file"><code>src/components/Final.jsx</code> · phase 2</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="id">F3</span><span class="name">Shana Tova box</span><span class="meta">6.2 – 10.4 s</span></div>
+    <div class="frame">
+      <div class="el video">identity-video.mp4 + darker overlay</div>
+      <div class="spacer"></div>
+      <div class="el">✡ ✡ ✡</div>
+      <div class="el he"><b>שנה טובה</b> (glow)</div>
+      <div class="el">Shana Tova</div>
+      <div class="el he">ומתוקה · 5787</div>
+      <div class="spacer"></div>
+    </div>
+    <div class="file"><code>src/components/Final.jsx</code> · phase 3</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="id">F4</span><span class="name">Reveal</span><span class="meta">10.4 s → end</span></div>
+    <div class="frame">
+      <div class="el img">reveal.jpg full-screen + top/bottom gradient</div>
+      <div class="el">pomegranate aril rain · victory jingle</div>
+      <div class="el">LVL 5787 UNLOCKED (orange banner, top)</div>
+      <div class="spacer"></div>
+      <div class="el he">✡ <b>שנה טובה ומתוקה</b> ✡ (shine)</div>
+      <div class="el">Shana Tova U'Metuka · Ktiva v'Chatima Tova</div>
+      <div class="el">5787 · תשפ״ז · reads as</div>
+      <div class="el he">תהא שנת פריחה וזריחה (word pop)</div>
+      <div class="el">"May it be a year of blossoming and sunrise."</div>
+      <div class="el">From Ron</div>
+      <div class="el btn">Replay</div>
+    </div>
+    <div class="file"><code>src/components/Final.jsx</code> · phase 4 · <code>PomegranateRain.jsx</code></div>
+  </div>
+
+</div>
+
+<div class="globals">
+  <h2>Global elements (not a slide)</h2>
+  <ul>
+    <li><code>BG</code> — RetroBackground: grid, scanlines, floating ✡ behind every screen. <code>src/components/RetroBackground.jsx</code></li>
+    <li><code>RAIN</code> — PomegranateRain: arils falling on F4 only. <code>src/components/PomegranateRain.jsx</code></li>
+    <li><code>SFX</code> — chiptune press / correct / wrong / victory / scan music. <code>src/sounds.js</code></li>
+    <li><code>PALETTE</code> — gold, orange, cream, red in <code>:root</code> of <code>src/styles.css</code></li>
+    <li><code>FADE</code> — 400 ms fade between screens, in <code>src/App.jsx</code></li>
+  </ul>
+</div>
+
+</body>
+</html>

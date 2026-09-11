@@ -9,7 +9,7 @@ const scanLines = [
   "Installing year 5787…",
 ];
 
-export default function Scan({ onComplete }) {
+export default function Scan({ onComplete, hold = false }) {
   const [visibleLines, setVisibleLines] = useState(0);
 
   useEffect(() => {
@@ -32,11 +32,12 @@ export default function Scan({ onComplete }) {
     return () => stopLandingMusic();
   }, []);
 
-  /* Wait for full video (8s) before advancing */
+  /* Wait for full video (8s) before advancing — skipped when held by the dev bar */
   useEffect(() => {
+    if (hold) return undefined;
     const timeout = setTimeout(onComplete, 8000);
     return () => clearTimeout(timeout);
-  }, [onComplete]);
+  }, [onComplete, hold]);
 
   return (
     <div className="screen scan">

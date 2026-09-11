@@ -29,3 +29,4 @@ Shana Tova 5787 card — a retro arcade-themed interactive Rosh Hashanah quiz we
 - `reveal.jpg` is cropped to just the two characters (console frame removed); `.final-overlay` is a top/bottom gradient, not a flat dim
 - Stars of David (`.magen`, U+2721) appear on landing, background and final — keep them quiet (blue, low opacity)
 - Palette: `--gold #F5B301`, `--orange #FF8C1A`, `--orange-deep #D9700F`, `--cream #FFF4D6`, `--red #C41E3A`, `--red-deep #7A0E20`
+- Slide IDs for pointing at sections: L, S, Q1–Q5, F0–F4 (see `slides-map.html` at repo root, open directly in a browser). Adding `?dev` to the game URL shows a bottom jump bar with the same IDs; jumping to S or F0–F3 holds that slide (timers frozen) until a normal tap continues the flow

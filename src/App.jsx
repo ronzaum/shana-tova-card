@@ -7,10 +7,34 @@ import RetroBackground from "./components/RetroBackground";
 import questions from "./data/questions";
 import "./styles.css";
 
+/*
+ * Dev slide bar — visible only when the URL has ?dev.
+ * IDs match slides-map.html: L, S, Q1–Q5, F0–F4.
+ */
+const DEV_MODE =
+  typeof window !== "undefined" &&
+  new URLSearchParams(window.location.search).has("dev");
+
+const DEV_SLIDES = [
+  "L",
+  "S",
+  ...questions.map((_, i) => `Q${i + 1}`),
+  "F0",
+  "F1",
+  "F2",
+  "F3",
+  "F4",
+];
+
 export default function App() {
   const [screen, setScreen] = useState("landing");
   const [questionIndex, setQuestionIndex] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
+
+  /* Dev bar state — when devHold is true, Scan/Final timers are frozen */
+  const [devHold, setDevHold] = useState(false);
+  const [devFinalPhase, setDevFinalPhase] = useState(0);
+  const [devSlide, setDevSlide] = useState("L");
 
   /*
    * Persistent video refs — always in the DOM so .play() can be called
@@ -37,6 +61,7 @@ export default function App() {
 
   /* START SCAN — show + play video immediately, then transition */
   const handleStart = useCallback(() => {
+    setDevHold(false);
     const vid = scanVideoRef.current;
     if (vid) {
       vid.currentTime = 0;
@@ -54,6 +79,7 @@ export default function App() {
 
   /* Answer handler — last question starts the final video and goes straight to Final */
   const handleAnswer = useCallback(() => {
+    setDevHold(false);
     if (questionIndex < questions.length - 1) {
       setTransitioning(true);
       setTimeout(() => {
@@ -80,6 +106,7 @@ export default function App() {
 
   /* Replay — hide everything, reset */
   const handleReplay = useCallback(() => {
+    setDevHold(false);
     setFinalVideoVisible(false);
     setScanVideoVisible(false);
     setTransitioning(true);
@@ -88,6 +115,60 @@ export default function App() {
       setQuestionIndex(0);
       setTransitioning(false);
     }, 400);
+  }, []);
+
+  /* Dev jump — go straight to a slide, no fade, timers held */
+  const devJump = useCallback((id) => {
+    const scanVid = scanVideoRef.current;
+    const finalVid = finalVideoRef.current;
+    const stopAll = () => {
+      scanVid?.pause();
+      finalVid?.pause();
+      setScanVideoVisible(false);
+      setFinalVideoVisible(false);
+    };
+
+    setDevSlide(id);
+    setTransitioning(false);
+
+    if (id === "L") {
+      stopAll();
+      setDevHold(false);
+      setQuestionIndex(0);
+      setScreen("landing");
+    } else if (id === "S") {
+      finalVid?.pause();
+      setFinalVideoVisible(false);
+      if (scanVid) {
+        scanVid.currentTime = 0;
+        scanVid.play();
+      }
+      setScanVideoVisible(true);
+      setDevHold(true);
+      setScreen("scan");
+    } else if (id.startsWith("Q")) {
+      stopAll();
+      setDevHold(false);
+      setQuestionIndex(Number(id.slice(1)) - 1);
+      setScreen("questions");
+    } else if (id.startsWith("F")) {
+      const phase = Number(id.slice(1));
+      scanVid?.pause();
+      setScanVideoVisible(false);
+      if (phase < 4) {
+        if (finalVid) {
+          finalVid.currentTime = 0;
+          finalVid.play();
+        }
+        setFinalVideoVisible(true);
+      } else {
+        finalVid?.pause();
+        setFinalVideoVisible(false);
+      }
+      setDevFinalPhase(phase);
+      setDevHold(true);
+      setScreen("final");
+    }
   }, []);
 
   return (
@@ -115,15 +196,36 @@ export default function App() {
           <Landing onStart={handleStart} />
         )}
         {screen === "scan" && (
-          <Scan onComplete={handleScanComplete} />
+          <Scan onComplete={handleScanComplete} hold={devHold} />
         )}
         {screen === "questions" && (
           <Question key={questionIndex} index={questionIndex} onAnswer={handleAnswer} />
         )}
         {screen === "final" && (
-          <Final onReplay={handleReplay} onPhaseChange={handleFinalPhaseChange} />
+          <Final
+            key={devHold ? `dev-${devFinalPhase}` : "final"}
+            onReplay={handleReplay}
+            onPhaseChange={handleFinalPhaseChange}
+            initialPhase={devHold ? devFinalPhase : 0}
+            hold={devHold}
+          />
         )}
       </div>
+
+      {DEV_MODE && (
+        <div className="dev-bar" aria-label="Dev slide jump">
+          {DEV_SLIDES.map((id) => (
+            <button
+              key={id}
+              type="button"
+              className={`dev-btn ${devSlide === id ? "active" : ""}`}
+              onClick={() => devJump(id)}
+            >
+              {id}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
